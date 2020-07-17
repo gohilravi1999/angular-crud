@@ -1,0 +1,98 @@
+<form
+    name="employeeForm"
+    [formGroup]="employeeForm"
+    (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="name">Name :</label>
+        <input type="text"
+        formControlName="name"
+                placeholder="Enter Name"
+                class="form-control"/>
+                
+                <div 
+                style="color: red;"
+                *ngIf="!employeeForm.get('name').valid">
+                    <div *ngIf="employeeForm.get('name').touched && employeeForm.get('name').errors.minlength">
+                        Minimum length must be 2
+                    </div>
+                    <div *ngIf="employeeForm.get('name').touched && employeeForm.get('name').errors.required">
+                        Please enter name
+                    </div>
+                </div>
+    </div>
+
+    <div class="form-group">
+        <label for="mobile">Mobile No. :</label>
+        <input type="text"
+        formControlName="mobile"
+                placeholder="Enter Mobile Number"
+                class="form-control"/>
+            <div 
+                style="color: red;"
+                *ngIf="!employeeForm.get('mobile').valid">
+                    <div *ngIf="employeeForm.get('mobile').touched && employeeForm.get('mobile').errors.minlength">
+                        Length must be 10
+                    </div>
+                    <div *ngIf="employeeForm.get('mobile').touched && employeeForm.get('mobile').errors.maxlength">
+                        Length must be 10
+                    </div>
+                    <div *ngIf="employeeForm.get('mobile').touched && employeeForm.get('mobile').errors.required">
+                        Please enter mobile number
+                    </div>
+                    <div *ngIf="employeeForm.get('mobile').touched && employeeForm.get('mobile').errors.pattern">
+                        Mobile number must have only numbers
+                    </div>
+                </div>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email :</label>
+        <input type="text"
+        formControlName="email"
+                placeholder="Enter Email"
+                class="form-control"/>
+
+                <div 
+                style="color: red;"
+                *ngIf="!employeeForm.get('email').valid">
+                    <div *ngIf="employeeForm.get('email').touched && employeeForm.get('email').errors.email">
+                        Please enter valid email
+                    </div>
+                    <div *ngIf="employeeForm.get('email').touched && employeeForm.get('email').errors.required">
+                        Please enter email
+                    </div>
+                </div>
+    </div>
+
+    <div class="form-group">
+        <label for="gender">Gender :</label>
+        <div class="radio"
+        *ngFor="let gender of employeeGender">
+            <input type="radio"
+            formControlName="gender"
+            name="gender"
+            [value]="gender"/> {{gender}}    
+        </div>   
+    </div>
+
+    <div class="form-group">
+        <label for="DOJ">Date of Joining :</label> {{editEmployee?.dateOfJoining}}
+        <input type="date" 
+        formControlName="dateOfJoining"
+        class="form-control"/>
+
+        
+            <div 
+            style="color: red;"
+            *ngIf="!employeeForm.get('dateOfJoining').valid">
+                    <div *ngIf="employeeForm.get('dateOfJoining').touched && employeeForm.get('dateOfJoining').errors.required">
+                        Please enter date of joining
+                    </div>
+            </div>
+    </div>
+
+    <button type="submit"
+            [disabled]="!employeeForm.valid"
+            class="btn btn-success">Submit</button>
+
+</form>

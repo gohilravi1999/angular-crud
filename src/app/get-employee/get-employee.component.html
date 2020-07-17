@@ -1,0 +1,26 @@
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Mobile</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>DOJ</th>
+        <th>Delete</th>
+        <th>Edite</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employee;let i=index">
+        <td>{{emp.name}}</td>
+        <td>{{emp.mobile}}</td>
+        <td>{{emp.email}}</td>
+        <td>{{emp.gender}}</td>
+        <td>{{emp.dateOfJoining}}</td>
+        <td><button class="btn btn-danger"
+              (click)="onDeleteEmployee(i)">Delete</button></td>
+        <td><button class="btn btn-primary"
+                (click)="onEditEmployee(emp,i)">Edit</button></td>
+      </tr>
+    </tbody>
+</table>
